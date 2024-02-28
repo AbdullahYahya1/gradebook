@@ -1,0 +1,11 @@
+{% extends "finalapp/layout.html" %}
+
+{% block body %}
+    <h1 class='h1addClass'>Add Class Room</h1>
+    <form class='addClassRoom' action="{% url 'createClassroom' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="classRoom" placeholder="classRoom" required>
+        <input type="text" name="subject" placeholder='subject name' required>
+        <button type="submit">add classRoom</button>
+    </form>    
+{% endblock %}

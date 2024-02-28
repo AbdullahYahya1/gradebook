@@ -1,0 +1,29 @@
+{% extends "finalapp/layout.html" %}
+
+
+
+{% block body %}
+    <h2 class='sfs'>Student page</h2>
+    <div>
+        {% if not student %}
+                <form class='SfLayout' action="{% url 'index' %}" method="post">
+            {% csrf_token %}
+            <input class='SfinputLayout' type="text" name="name" id="" placeholder='Student name' required>
+            <input class='SfinputLayout' type="number" name="id" id="" placeholder='id' required>
+            <input class='SfinputLayout' type="number" name="markid" id="" placeholder='mark id' required>
+            {% if massage %}
+            <p class='massage'>{{massage}}</p>
+            {% endif %}
+            <button class='Sfbutton' type="submit">show marks</button>
+        </form>
+        {% else %}
+        <div class='Scontainer'>
+            <h3>Name: {{student}}</h3>
+            <h2>course: {{student.classroom.subject}} </h2>
+            <h2 class='marksit'>Mark: {{student.transScore}}</h2>
+
+        </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

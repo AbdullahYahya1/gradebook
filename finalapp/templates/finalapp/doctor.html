@@ -1,0 +1,38 @@
+{% extends "finalapp/layout.html" %}
+
+{% block body %}
+    {% if rooms %}
+    <h1 class='center'>Rooms</h1>
+    <div class='apiStat'></div>
+    <div class='ClassRooms'>
+        {% for room in rooms %}
+            
+        <div class="classRoomA classRoomA{{room.id}}"  >
+            <a onclick="deleteRoom({{room.id}})" class='red deleteB'>remove</a>
+            <div class="dialog" id='room{{room.id}}'>
+                <p>
+                are you sure
+                </p>
+                <div class='flexBt'>
+                    <button onclick="del({{room.id}})" class='deleteB2'>delete</button>
+                    <button onclick="dontDeleteRoom({{room.id}})" class='exitB2'>exit</button>
+                </div>
+            </div>
+
+            <a class='ar'  href="{% url 'room' room.id %}">
+                <div>
+                <div class="classRoom">
+                        <div class='e1'>Class: {{room.name}}</div>
+                        <div class='e2'>subject: {{room.subject}}</div>
+                        <div class='e3'>students: {{room.students.count}}</div>
+                </div>
+            </div>
+            </a>            
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h1 class='norooms'>there is no rooms</h1>
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "finalapp/layout.html" %}
+{% comment %} error Page {% endcomment %}
+{% block body %}
+    <h1> Some thing went worng </h1>
+    {% if error1 %}
+    <h1>it can be {{error1}}</h1>
+    {% endif %}    
+{% endblock %}

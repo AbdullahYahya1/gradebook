@@ -1,0 +1,159 @@
+{% extends "finalapp/layout.html" %}
+
+{% load static %}
+{% block head %}
+    <script src="{% static 'finalapp/app.js' %}"></script>
+    <link href="{% static 'finalapp/room.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+{% endblock head %}
+
+
+{% if room and Students %}
+
+    {% block headerElementsR%}
+
+    
+
+
+        <li class="nav-item">
+            <a class="nav-link"  onclick='page1()'>addStudent</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick='page2()'>show student table</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick='page3()'>show stat</a>
+        </li>
+    {% endblock headerElementsR%}
+
+{% endif %}
+
+
+{% block body %}
+
+    {% if room %}
+    <input hidden id='classroom_id' value='{{room.id}}' ></input>
+    <div>
+            <h3 class='room_name'>{{room.subject}}</h3>
+    </di>
+
+    {% if not Students %}
+    <div class='page2'>
+        <div class="noS" id="myDiv">NO Table</div>
+        <div class="noS" id="myDiv">add students</div>
+    </div>
+    <div class='page3 p3'>
+        <div class="noS" id="myDiv">NO Stat</div>
+        <div class="noS" id="myDiv">add students</div>
+    </div>
+    {% endif %}    
+
+    <div class='page1'>
+        <form action="{% url 'addStudent' %}" method="post">
+            {% csrf_token %}        
+            <label >Add student:</label>
+            <input type="text" name="name" placeholder="Student name" required>
+            <input type="number" name="student_id" placeholder='student id' required >
+            <input type="number" name="score" placeholder='score' required>
+            <input hidden name="classroom_id" value="{{ room.id }}" hiden>
+            <button type="submit">Add</button>
+        </form>   
+
+        <form method="post" enctype="multipart/form-data" action='{% url 'upload_csv' %}'>
+            {% csrf_token %}
+            {{ form }}
+            <input hidden name="classroom_id" value="{{ room.id }}" hiden>
+
+            <button type="submit">Upload CSV</button>
+            <p class='CSVnote'>note: the CSV must include three coulumns "ID" "Name" "Score"</p>
+            <p class='CSVnote'>Score and id must be numbers</p>
+            <p class='CSVnote'>name what ever u want </p>
+
+        </form>
+
+    </div>
+    {% if Students %}
+    <div class='page2'>
+        <div 'dropdown_container'>
+            <div class="dropdown">
+                <button class="dropbtn">Download CSV File</button>
+                <div class="dropdown-content">
+                <a href="{% url 'room' room.id %}?query=CSV">Download CSV file</a>
+                <a href="{% url 'room' room.id %}?query=CSVm">Download CSV file name order</a>
+                <a href="{% url 'room' room.id %}?query=CSVn">Download CSV file min order</a>
+                <a href="{% url 'room' room.id %}?query=CSVx">Download CSV file max order</a>
+                <a href="{% url 'room' room.id %}?query=CSVS">Download CSV file letter grading system</a>
+                <a href="{% url 'room' room.id %}?query=CSVSn">Download CSV file letter grading system min order</a>
+                <a href="{% url 'room' room.id %}?query=CSVSx">Download CSV letter grading system max order</a>
+                <a href="{% url 'room' room.id %}?query=CSVSm">Download CSV letter grading system file name order</a>
+                <a href="{% url 'room' room.id %}?query=markID">MarkID <span class='span'>if you want student to see marks send this to them</span></a>
+
+                </div>
+            </div>
+        </div>
+        <div class='orderby'>
+            <div>
+                <a href="{% url 'room' room.id %}?query=max">  <i class="BUTTON fas fa-arrow-up fa-lg"></i> </a>
+            </div>
+          
+            <div class='right_orderbydiv'>
+                <a href="{% url 'room' room.id %}?query=min"><i class="BUTTON fas fa-arrow-up fa-flip-both fa-lg"></i></a>
+            </div>
+        </div>
+        <div class='table'>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Score</th>
+                  <th>Student ID</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for student in Students %}
+                  <tr>
+                    <td id='number{{student.id}}'>{{ forloop.counter }}</td>
+                    <td class='s_name_c' id='name{{student.id}}'>{{ student.name }}</td>
+                    <td class='s_score_c' id='score{{student.id}}'>{{ student.score }}</td>
+                    <td class='s_id_c' id='student_id_container{{student.id}}'>{{ student.student_id }}</td>
+                    <th id='button{{student.id}}'><a class="nav-link"  onclick='editStudent({{ student.id }})' href='#'>edit</a></th>
+
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class='page3'>
+        <div class='page3C'>
+
+          {{img|safe}}
+            <div>
+                Avrage: {{avg}}
+            </div>
+            <div>
+                Min Score: {{min_score}}
+            </div> 
+            <div>
+                Max score: {{max_score}}
+            </div>
+        </div>
+        <a href='#' onclick='downloadImage()'>download IMG</a>
+
+    </div>
+    {% endif %}
+    
+
+    
+    {% endif %}
+    
+
+{% endblock %}
+
+
+

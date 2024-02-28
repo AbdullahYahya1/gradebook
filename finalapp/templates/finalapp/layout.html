@@ -1,0 +1,86 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade book</title>
+    {% block head %}
+
+    {% endblock head %}
+
+    <title>{% block title %}finalapp{% endblock %}</title>
+    <link href="{% static 'finalapp/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="{% static 'finalapp/index.js' %}"></script>
+    
+</head>
+
+<body>
+    {% block myheaderTitle %}
+        
+    {% endblock myheaderTitle %}
+
+    <ul class="nav">
+        {% block headerElementsL %}
+        
+        {% endblock headerElementsL %}
+
+
+        {% if user.is_authenticated %}
+        <div class='flex'>
+            <li>
+                <a class="nav-link" href="{% url 'index' %}">show rooms</a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'createClassroom' %}">Create room</a>
+            </li>
+
+            {% block headerElementsR %}
+        
+            {% endblock headerElementsR %}
+        </div>
+            <div class='flex flex2'>
+                <li class="nav-item ">
+                <p class="nav-link notlink" href="">signed as  {{ user.username }}</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+            </div>
+
+
+        {% else %}
+        <div class='flex'>
+            <li class='nav-item'>
+                <a class="nav-link" href="{% url 'home' %}">home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">student page</a>
+            </li>
+        </div>
+        <div class='flex '>
+            <li class="nav-item ">
+                <p class="nav-link notlink" href="">not signed</p>
+             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+        </div>
+        {% endif %}
+
+
+
+    </ul>
+    <hr>
+    {% block body %}
+    {% endblock %}
+    
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+
+body{
+    background-color: black;
+}
+.nav{
+    justify-content: space-between !important;
+}
+.flex{
+    display: flex !important;
+}
+.classRoom{
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+}
+.student{
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+    color: white;
+}
+
+.page1{
+    display: none;
+}
+.page2{
+    display: block;
+}
+.page3{
+    display: none;
+}
+
+.notlink{
+    color: rgb(125, 125, 125);
+    font-weight: bold;
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Style the dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+  }
+  .dropdown{
+    width: 500px;
+    margin-inline:auto ;
+  }
+  /* Style the links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    
+  }
+  
+  /* Change color of links on hover */
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  /* Add CSS to the entire page */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  input,
+  button {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  table {
+    margin-top: 20px;
+
+    width: 80%;
+    border-collapse: collapse;
+    margin-inline:auto ;
+}
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+
+
+.room_name{
+    background-color: #4c4c4c;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+.green{
+    color: green;
+}
+.black{
+    color: black;
+}
+
+
+.green:hover{
+    color: green;
+    opacity: .8;
+}
+.red:hover{
+    color: red;
+    opacity: .8;
+
+}
+.black:hover{
+    color: black;
+    opacity: .8;
+
+}
+
+.green:active{
+    color: green;
+    opacity: .5;
+
+}
+.red:active{
+    color: red;
+    opacity: .5;
+
+}
+.black:active{
+    color: black;
+    opacity: .5;
+
+}
+
+.s_score{
+    width: 100%;
+    height: 100px !important;
+
+}
+.s_name{
+    width: 100%;
+    height: 100px !important;
+
+}
+.s_id{
+    width: 100%;
+    height: 100px !important;
+}
+
+.orderby{
+    justify-content: center;
+    margin-top: 60px;
+    display: flex;
+}
+.orderby div{
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.21);
+    border-radius: 100% !important;
+
+}
+.right_orderbydiv{
+    margin-left: 10px !important;
+}
+
+.BUTTON{
+    padding: 20px 15px;
+}
+
+
+
+/* styles.css */
+/* Styling for the first form */
+.page1 form[action="/addStudent"] {
+    /* Add your CSS styles here */
+    /* For example, you can set the background color, font properties, etc. */
+    margin-bottom: 60px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+/* Styling for the second form */
+.page1 form[action="/upload_csv"] {
+    /* Add your CSS styles here */
+    /* For example, you can set the background color, font properties, etc. */
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+
+}
+
+.page1 input[type="text"],
+.page1 input[type="number"],
+.page1 input[type="file"] {
+    display: block;
+    width: 100%;
+    min-width: 200px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.page1 button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.page1 button[type="submit"] {
+    background-color: green;
+}
+
+.page1 button[type="submit"]:last-child {
+    background-color: #007bff;
+}
+.page1{
+    width: 80%;
+    margin-inline:auto; ;
+}
+
+.CSVnote{
+    margin-top: 10px;
+    color: #4c4c4c;
+    font-size: 12px;
+}
+
+
+
+.noS{
+    font-size: 40px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    margin-top: 30px !important;
+}
+
+
+@media (max-width : 768px) {
+    .dropdown-content {
+        width: 100% !important;
+    }
+    .dropdown{
+        width: 100% !important;
+        margin-inline:auto ;
+      }
+}
+
+
+@media (max-width: 767px) {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        padding: 0px;
+        margin: 0px ;
+        margin-top: 20px;
+    }
+    
+      th,
+      td {
+        border: 1px solid #ccc;
+      }
+    
+}
+
+
+@media (max-width:627px) {
+    .nav-link{
+        height: 30px;
+        margin: 2px;
+        font-size:12px;
+        padding: 5px !important;
+    }
+}
+@media (max-width:413px) {
+    .nav-link{
+        height: 30px;
+        margin: 2px;
+        font-size:11px;
+        padding: 5px !important;
+    }
+    
+}
+.nav-link{
+    color:#007bff !important;
+    cursor: pointer;
+}
+.nav-link:active{
+    opacity: 0.6;
+}
+.span{
+    font-size: 12px;
+
+    color: rgb(48, 48, 48);
+}
